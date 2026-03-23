@@ -2,17 +2,26 @@
 <html>
 <head>
   <title>My Portfolio</title>
-  <link rel="stylesheet" href="/static/style.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
 
 <header>
+  <!-- Correct Flask image path -->
+  <img src="{{ url_for('static', filename='profile.jpg') }}" 
+       alt="Profile Picture" 
+       class="profile-pic">
+
   <h1>"Dream Big. Build Bigger."</h1>
 </header>
 
 <section>
   <h2>About Me</h2>
-  <p>I am a passionate developer who builds scalable web applications.</p>
+  <p>
+    I am a dedicated web developer with a strong interest in creating efficient 
+    and scalable applications. Currently pursuing BCA, I focus on learning 
+    modern technologies and building real-world projects.
+  </p>
 </section>
 
 <section>
