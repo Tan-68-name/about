@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>My Portfolio</title>
+  <title>Portfolio</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
@@ -17,7 +17,7 @@
   </ul>
 </nav>
 
-<!-- HERO SECTION -->
+<!-- HERO -->
 <header class="hero">
   <div class="overlay">
     <h3>Welcome To My Portfolio!</h3>
@@ -26,7 +26,7 @@
   </div>
 </header>
 
-<!-- SKILLS SECTION -->
+<!-- SKILLS -->
 <section id="skills">
   <h2>Skills</h2>
   <div class="card-container">
@@ -48,24 +48,20 @@
     and scalable applications. Currently pursuing BCA at Kristu Jayanti College, 
     Bangalore, I focus on learning modern technologies and building real-world projects.
     
-    I have completed several certificate courses in MongoDB, HTML, CSS, JavaScript, 
-    Node.js, and GitHub, which have strengthened my technical foundation and 
-    practical development skills.
+    I have completed certificate courses in MongoDB, HTML, CSS, JavaScript, Node.js, 
+    and GitHub, strengthening my technical and practical skills.
   </p>
 </section>
 
 <!-- CONTACT -->
 <section id="contact">
   <h2>Contact</h2>
-  <p>
-    I am always open to learning opportunities, collaborations, and internships. 
-    Feel free to reach out to me through the form below.
-  </p>
+  <p>Feel free to reach out for opportunities and collaborations.</p>
 
-  <form id="contactForm">
-    <input type="text" id="name" placeholder="Your Name" required>
-    <input type="email" id="email" placeholder="Your Email" required>
-    <textarea id="message" placeholder="Your Message"></textarea>
+  <form action="/contact" method="POST">
+    <input type="text" name="name" placeholder="Your Name" required>
+    <input type="email" name="email" placeholder="Your Email" required>
+    <textarea name="message" placeholder="Your Message"></textarea>
     <button type="submit">Send Message</button>
   </form>
 </section>

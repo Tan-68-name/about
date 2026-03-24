@@ -1,41 +1,38 @@
-from flask import Flask, request, jsonify, render_template
+from flask import Flask, render_template, request, redirect
 import mysql.connector
 import os
 
 app = Flask(__name__)
 
-# MySQL connection (Railway)
-def get_connection():
-    return mysql.connector.connect(
-        host=os.getenv("DB_HOST"),
-        user=os.getenv("DB_USER"),
-        password=os.getenv("DB_PASS"),
-        database=os.getenv("DB_NAME"),
-        port=os.getenv("DB_PORT")
-    )
+# Railway MySQL connection (use env variables in Render)
+db = mysql.connector.connect(
+    host=os.getenv("DB_HOST"),
+    user=os.getenv("DB_USER"),
+    password=os.getenv("DB_PASSWORD"),
+    database=os.getenv("DB_NAME")
+)
 
-@app.route("/")
+@app.route('/')
 def home():
-    return render_template("index.html")
+    return render_template('index.html')
 
-@app.route("/contact", methods=["POST"])
+
+@app.route('/contact', methods=['POST'])
 def contact():
-    data = request.json
-    name = data.get("name")
-    email = data.get("email")
-    message = data.get("message")
+    name = request.form['name']
+    email = request.form['email']
+    message = request.form['message']
 
-    conn = get_connection()
-    cursor = conn.cursor()
+    cursor = db.cursor()
 
     query = "INSERT INTO contacts (name, email, message) VALUES (%s, %s, %s)"
     cursor.execute(query, (name, email, message))
+    db.commit()
 
-    conn.commit()
     cursor.close()
-    conn.close()
 
-    return jsonify({"message": "Message saved successfully!"})
+    return redirect('/')
+
 
 if __name__ == "__main__":
     app.run(debug=True)
