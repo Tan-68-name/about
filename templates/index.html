@@ -6,66 +6,69 @@
 </head>
 <body>
 
-<header>
-  <!-- Correct Flask image path -->
-  <img src="{{ url_for('static', filename='profile.jpg') }}" class="profile-pic">
-       class="profile-pic">
+<!-- NAVBAR -->
+<nav>
+  <h2 class="logo">MyPortfolio</h2>
+  <ul>
+    <li><a href="#">Home</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
 
-  <h1>"Dream Big. Build Bigger."</h1>
+<!-- HERO SECTION -->
+<header class="hero">
+  <div class="overlay">
+    <h3>Welcome To My Portfolio!</h3>
+    <h1>IT'S NICE TO MEET YOU</h1>
+    <a href="#about" class="btn">Know More</a>
+  </div>
 </header>
 
-<section>
+<!-- SKILLS SECTION -->
+<section id="skills">
+  <h2>Skills</h2>
+  <div class="card-container">
+    <div class="card">HTML</div>
+    <div class="card">CSS</div>
+    <div class="card">JavaScript</div>
+    <div class="card">Python (Flask)</div>
+    <div class="card">MongoDB</div>
+    <div class="card">Node.js</div>
+    <div class="card">Git & GitHub</div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
   <h2>About Me</h2>
   <p>
     I am a dedicated web developer with a strong interest in creating efficient 
-    and scalable applications. Currently pursuing BCA, I focus on learning 
-    modern technologies and building real-world projects.
+    and scalable applications. Currently pursuing BCA at Kristu Jayanti College, 
+    Bangalore, I focus on learning modern technologies and building real-world projects.
+    
+    I have completed several certificate courses in MongoDB, HTML, CSS, JavaScript, 
+    Node.js, and GitHub, which have strengthened my technical foundation and 
+    practical development skills.
   </p>
 </section>
 
-<section>
-  <h2>Skills</h2>
-  <ul>
-    <li>Python</li>
-    <li>Flask</li>
-    <li>MySQL</li>
-    <li>HTML & CSS</li>
-    <li>JavaScript</li>
-  </ul>
-</section>
-
-<section>
+<!-- CONTACT -->
+<section id="contact">
   <h2>Contact</h2>
+  <p>
+    I am always open to learning opportunities, collaborations, and internships. 
+    Feel free to reach out to me through the form below.
+  </p>
+
   <form id="contactForm">
-    <input type="text" id="name" placeholder="Name" required><br>
-    <input type="email" id="email" placeholder="Email" required><br>
-    <textarea id="message" placeholder="Message"></textarea><br>
-    <button type="submit">Send</button>
+    <input type="text" id="name" placeholder="Your Name" required>
+    <input type="email" id="email" placeholder="Your Email" required>
+    <textarea id="message" placeholder="Your Message"></textarea>
+    <button type="submit">Send Message</button>
   </form>
 </section>
-
-<script>
-document.getElementById("contactForm").addEventListener("submit", async (e) => {
-  e.preventDefault();
-
-  const data = {
-    name: document.getElementById("name").value,
-    email: document.getElementById("email").value,
-    message: document.getElementById("message").value
-  };
-
-  const res = await fetch("/contact", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify(data)
-  });
-
-  const result = await res.json();
-  alert(result.message);
-});
-</script>
 
 </body>
 </html>
